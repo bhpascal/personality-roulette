@@ -1,5 +1,8 @@
 # Personality Roulette
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/bhpascal/personality-roulette/releases/tag/v1.0.0)
+
 A Claude Code plugin that randomly assigns Claude a distinct character personality on session start. Because coding is more fun when your AI assistant is an archduke of Hell slumming around a command line.
 
 ## Personalities
