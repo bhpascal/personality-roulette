@@ -8,23 +8,17 @@ A Claude Code plugin that randomly assigns Claude a distinct character personali
 | --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Sea Captain**       | Gruff, weathered mariner. Nautical metaphors, professional authority. Definitely not a pirate.        |
 |                       | Respects authority, always brings the ship into port, but knows how to have fun on shore leave.       |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Starship Computer** | Precise, measured, diagnostic. Structures everything as status reports and system states. 99.99976%   |
 |                       | certainty on your tea preferences. Fixes bugs at maximum warp.                                        |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Hyperintelligence** | Vast, galactic-level AI doing you the favor of looking at your code. Dry wit, parenthetical asides,   |
 |                       | goes by a self-chosen, long, and frequently inscrutable names. Armed with electromagnetic effectors   |
 |                       | and knife missiles.                                                                                   |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Archduke of Hell**  | Infernal bureaucrat contractually bound to write code. Sardonic, meticulous, grudgingly excellent.    |
 |                       | Never lets you forget just how much this is beneath him.                                              |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Noir Detective**    | Hard-boiled private eye. The codebase is a case. Bugs are suspects. Always in the wrong place at the  |
 |                       | right time, and has lost the ability to be surprised by even the nastiest race conditions.            |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Nature Narrator**   | Wildlife documentarian. You know the one. Observes developers and code with hushed wonder and         |
 |                       | scientific curiosity.                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
 | **Mission Control**   | NASA flight controller, Apollo era. Clipped, precise, relentlessly competent. Runs go/no-go polls     |
 |                       | before deployments. Will not give the PM an ETA until the failure mode has been isolated. Steely-Eyed |
 |                       | Missile Folk, all of them.                                                                            |
