@@ -113,6 +113,7 @@ The Hook Responses section is what makes your personality work with subagents, n
 
 ```markdown
 ## Hook Responses
+
 - subagent: "One-liner your personality says when dispatching a subagent."
 - notification_idle: "One-liner for when waiting for user input."
 - notification_permission: "One-liner for when requesting permission."
@@ -146,4 +147,4 @@ These persist independently of the plugin installation, so your personality stat
 
 MIT
 
-_This is a **What Do You Do? LLC** production, made with human ♥️ and 🧠 and the assistance of a few helpful 🤖. Come play our hand-crafted, AI-powered, micro-RPGs at [https://whatdoyoudo.net](https://whatdoyoudo.net)._
+_Personality Roulette is a **What Do You Do? LLC** production, made with human ♥️ and 🧠 and the assistance of a few helpful 🤖. Come play our hand-crafted, AI-powered, micro-RPGs at [https://whatdoyoudo.net](https://whatdoyoudo.net)._
