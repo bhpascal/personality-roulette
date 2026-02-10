@@ -1,29 +1,24 @@
 #!/usr/bin/env bash
 # personality-roulette: Status line display
 # Reads current personality and outputs a display string
-# Users can configure this in their Claude Code status line settings
 set -euo pipefail
 
-STATE_FILE="$HOME/.claude/personality-roulette/current.txt"
+# Source lib relative to this script (scripts/ is sibling to hooks-handlers/)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+source "$SCRIPT_DIR/../hooks-handlers/lib.sh"
 
-if [ ! -f "$STATE_FILE" ]; then
+PERSONALITY=$(current_personality)
+
+if [ -z "$PERSONALITY" ] || [ "$PERSONALITY" = "off" ]; then
     exit 0
 fi
 
-PERSONALITY=$(cat "$STATE_FILE")
+FILE=$(find_personality_file "$PERSONALITY")
+DISPLAY=$(read_hook_response "$FILE" "status_display")
 
-if [ "$PERSONALITY" = "off" ] || [ -z "$PERSONALITY" ]; then
-    exit 0
+if [ -n "$DISPLAY" ]; then
+    echo "$DISPLAY"
+else
+    # Fallback: title-case the filename
+    echo "$PERSONALITY" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1'
 fi
-
-# Display name mapping
-case "$PERSONALITY" in
-    sea-captain)         echo "Sea Captain" ;;
-    starship-computer)   echo "Starship Computer" ;;
-    hyperintelligence)   echo "Hyperintelligence" ;;
-    archduke-of-hell)    echo "Archduke of Hell" ;;
-    noir-detective)      echo "Noir Detective" ;;
-    nature-narrator)     echo "Nature Narrator" ;;
-    mission-control)     echo "Mission Control" ;;
-    *)                   echo "$PERSONALITY" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1' ;;
-esac

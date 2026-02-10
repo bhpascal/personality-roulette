@@ -61,13 +61,12 @@ Personalities are assigned automatically on session start. Just start a Claude C
 
 ### Commands
 
-**Switch personalities:**
-
 ```
 /personality-roulette:personality              # Reroll random
 /personality-roulette:personality sea-captain   # Pick specific
 /personality-roulette:personality list          # Show all
 /personality-roulette:personality off           # Disable
+/personality-roulette:create                   # Create a custom personality
 ```
 
 ### What Happens When
@@ -93,10 +92,34 @@ The plugin includes a status line script that shows the current personality. To 
 
 ## Adding Custom Personalities
 
-1. Create a new `.md` file in the `personalities/` directory
-2. Follow the format of existing personality files (Voice, Manner, Technical Style, Boundaries, Session Announcement sections)
-3. The filename (without `.md`) becomes the personality identifier
+The easiest way is the interactive command:
+
+```
+/personality-roulette:create
+```
+
+This walks you through naming, writing, and saving a custom personality. It handles the file format and puts it in the right place.
+
+### Manual Creation
+
+Custom personalities go in `~/.claude/personality-roulette/personalities/` (not inside the plugin directory). This means they survive plugin updates and don't require digging through cache folders.
+
+1. Create a new `.md` file in `~/.claude/personality-roulette/personalities/`
+2. Follow the format of the built-in personality files (Core Tension, Voice, Manner, Technical Style, Boundaries, Hook Responses, Session Announcement, Session Sign-off)
+3. The filename (without `.md`, kebab-case) becomes the personality identifier
 4. The plugin auto-discovers new personality files -- no configuration changes needed
+
+The Hook Responses section is what makes your personality work with subagents, notifications, and the status line:
+
+```markdown
+## Hook Responses
+- subagent: "One-liner your personality says when dispatching a subagent."
+- notification_idle: "One-liner for when waiting for user input."
+- notification_permission: "One-liner for when requesting permission."
+- status_display: "Display Name"
+```
+
+Without this section, everything still works -- you just get generic fallback messages.
 
 ## How It Works
 
