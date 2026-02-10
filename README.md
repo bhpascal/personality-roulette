@@ -32,8 +32,8 @@ Then start Claude Code normally. That's it.
 ### From the Claude Code Marketplace
 
 ```
-/plugin marketplace add bhpascal/personality-roulette-marketplace
-/plugin install personality-roulette@personality-roulette-marketplace
+/plugin marketplace add bhpascal/whatdoyoudo-plugins
+/plugin install personality-roulette@whatdoyoudo-plugins
 ```
 
 ### Try It Without Installing
