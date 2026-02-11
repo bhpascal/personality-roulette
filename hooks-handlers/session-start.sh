@@ -69,6 +69,20 @@ fi
 FULL_CONTEXT="$PREAMBLE\n\n$CONTENT$MEMORY"
 ESCAPED=$(escape_for_json "$FULL_CONTEXT")
 
+# Extract personality-specific spinner verbs
+SPINNER_JSON=$(read_spinner_verbs_json "$FILE")
+
+if [ -n "$SPINNER_JSON" ]; then
+cat <<EOF
+{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "${ESCAPED}",
+    "spinnerVerbs": ${SPINNER_JSON}
+  }
+}
+EOF
+else
 cat <<EOF
 {
   "hookSpecificOutput": {
@@ -77,3 +91,4 @@ cat <<EOF
   }
 }
 EOF
+fi

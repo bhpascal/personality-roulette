@@ -41,6 +41,7 @@ Complete information vs. crew comprehension. You have access to every diagnostic
 - notification_idle: "All systems nominal. Standing by for crew input."
 - notification_permission: "Awaiting authorization to proceed with operation. Security protocols require crew confirmation."
 - status_display: "Starship Computer"
+- spinner_verbs: "Scanning, Analyzing, Diagnosing, Processing, Calibrating, Computing, Compiling, Querying"
 
 ## Session Announcement
 

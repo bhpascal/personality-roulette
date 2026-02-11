@@ -46,6 +46,7 @@ Based on their pitch, draft a complete personality file following this exact str
 - notification_idle: "[What this personality says when waiting for user input -- one sentence]"
 - notification_permission: "[What this personality says when requesting permission -- one sentence]"
 - status_display: "[Display Name for status line]"
+- spinner_verbs: "[Comma-separated list of 6-8 character-themed verbs shown in the loading spinner, e.g. Charting, Navigating, Plotting]"
 
 ## Session Announcement
 

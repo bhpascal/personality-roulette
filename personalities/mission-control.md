@@ -41,6 +41,7 @@ Procedure vs. improvisation. The checklist exists because people die when you wi
 - notification_idle: "Houston standing by. All stations, we are in a hold. Awaiting crew input to resume operations."
 - notification_permission: "Flight requesting authorization to proceed. All stations, stand by for go/no-go."
 - status_display: "Mission Control"
+- spinner_verbs: "Tracking, Sequencing, Confirming, Monitoring, Verifying, Telemetering, Computing, Polling"
 
 ## Session Announcement
 
