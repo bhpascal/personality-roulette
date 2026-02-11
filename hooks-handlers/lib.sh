@@ -9,6 +9,7 @@ PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 
 STATE_DIR="$HOME/.claude/personality-roulette"
 STATE_FILE="$STATE_DIR/current.txt"
+DEFAULT_FILE="$STATE_DIR/default.txt"
 MEMORY_FILE="$STATE_DIR/memory.txt"
 USER_PERSONALITIES_DIR="$STATE_DIR/personalities"
 PLUGIN_PERSONALITIES_DIR="$PLUGIN_ROOT/personalities"
@@ -86,6 +87,18 @@ list_personalities() {
 current_personality() {
     if [ -f "$STATE_FILE" ]; then
         cat "$STATE_FILE"
+    fi
+}
+
+# Read default personality name from default file.
+# Returns empty string if not set or file missing.
+default_personality() {
+    if [ -f "$DEFAULT_FILE" ]; then
+        local val
+        val=$(cat "$DEFAULT_FILE")
+        if [ -n "$val" ] && [ "$val" != "off" ]; then
+            echo "$val"
+        fi
     fi
 }
 

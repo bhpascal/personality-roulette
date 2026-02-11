@@ -26,8 +26,13 @@ case "$TRIGGER" in
         ANNOUNCE="false"
         ;;
     *)
-        CURRENT=$(current_personality)
-        PERSONALITY=$(pick_random "$CURRENT")
+        DEFAULT=$(default_personality)
+        if [ -n "$DEFAULT" ]; then
+            PERSONALITY="$DEFAULT"
+        else
+            CURRENT=$(current_personality)
+            PERSONALITY=$(pick_random "$CURRENT")
+        fi
         echo "$PERSONALITY" > "$STATE_FILE"
         ANNOUNCE="true"
         ;;

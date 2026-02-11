@@ -10,6 +10,27 @@ The user invoked this command. Determine what they want from the arguments:
 - **A personality name** (e.g., "sea-captain", "starship-computer", "hyperintelligence", "archduke-of-hell", "noir-detective", "nature-narrator", "mission-control"): Switch to that specific personality.
 - **"list"**: Show all available personalities with the current one highlighted.
 - **"off"**: Disable personality mode for this session.
+- **"default"**: Manage the default personality (see below).
+
+## Default Personality
+
+The default personality file is `~/.claude/personality-roulette/default.txt`. When set, new sessions always start with this personality instead of a random one. The user can still reroll or switch during a session.
+
+### For "default" with no further argument:
+1. Read `~/.claude/personality-roulette/default.txt`.
+2. If it exists and contains a personality name, show: "Default personality: **[display name]**. New sessions will start with this personality. Use `/personality default off` to go back to random."
+3. If it doesn't exist or is empty, show: "No default set. New sessions pick a random personality. Use `/personality default <name>` to set one."
+
+### For "default off" or "default clear":
+1. Delete `~/.claude/personality-roulette/default.txt` (or write empty string).
+2. Confirm: "Default cleared. New sessions will pick a random personality again."
+
+### For "default <name>":
+1. Validate the personality name exists (check custom directory first, then built-in).
+2. If not found, show available personalities and ask the user to pick one.
+3. Write the personality name (kebab-case filename without .md) to `~/.claude/personality-roulette/default.txt`.
+4. Confirm: "Default set to **[display name]**. New sessions will start with this personality."
+5. This does NOT switch the current session -- it only affects future sessions.
 
 ## Personality Locations
 
@@ -25,7 +46,8 @@ When searching for a personality by name, check the custom directory first (user
 ### For "list":
 1. List personalities from BOTH the plugin root `personalities/` directory and `~/.claude/personality-roulette/personalities/`.
 2. Read `~/.claude/personality-roulette/current.txt` to determine the current personality.
-3. Display all personalities with their display names (read the `status_display` value from the `## Hook Responses` section of each file, or title-case the filename as fallback). Mark the current one. Indicate which are built-in vs. custom.
+3. Read `~/.claude/personality-roulette/default.txt` to determine the default personality (if set).
+4. Display all personalities with their display names (read the `status_display` value from the `## Hook Responses` section of each file, or title-case the filename as fallback). Mark the current one. If a default is set, mark that too. Indicate which are built-in vs. custom.
 
 ### For "off":
 1. Write "off" to `~/.claude/personality-roulette/current.txt`.
