@@ -20,6 +20,10 @@ if echo "$INPUT" | grep -q "permission_prompt" 2>/dev/null; then
     NOTIFICATION_TYPE="permission"
 elif echo "$INPUT" | grep -q "idle_prompt" 2>/dev/null; then
     NOTIFICATION_TYPE="idle"
+elif echo "$INPUT" | grep -q "auth_success" 2>/dev/null; then
+    NOTIFICATION_TYPE="auth"
+elif echo "$INPUT" | grep -q "elicitation_dialog" 2>/dev/null; then
+    NOTIFICATION_TYPE="elicitation"
 else
     exit 0
 fi

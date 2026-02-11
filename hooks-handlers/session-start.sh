@@ -71,24 +71,23 @@ ESCAPED=$(escape_for_json "$FULL_CONTEXT")
 
 # Extract personality-specific spinner verbs
 SPINNER_JSON=$(read_spinner_verbs_json "$FILE")
-
+SPINNER_LINE=""
 if [ -n "$SPINNER_JSON" ]; then
-cat <<EOF
-{
-  "hookSpecificOutput": {
-    "hookEventName": "SessionStart",
-    "additionalContext": "${ESCAPED}",
-    "spinnerVerbs": ${SPINNER_JSON}
-  }
-}
-EOF
-else
-cat <<EOF
-{
-  "hookSpecificOutput": {
-    "hookEventName": "SessionStart",
-    "additionalContext": "${ESCAPED}"
-  }
-}
-EOF
+    SPINNER_LINE=",
+    \"spinnerVerbs\": ${SPINNER_JSON}"
 fi
+
+# Export personality name for other tools/scripts
+if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
+    echo "export PERSONALITY_ROULETTE_CURRENT=\"$PERSONALITY\"" >> "$CLAUDE_ENV_FILE"
+    echo "export PERSONALITY_ROULETTE_DISPLAY=\"$DISPLAY\"" >> "$CLAUDE_ENV_FILE"
+fi
+
+cat <<EOF
+{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "${ESCAPED}"${SPINNER_LINE}
+  }
+}
+EOF

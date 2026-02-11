@@ -84,7 +84,9 @@ read_spinner_verbs_json() {
         else
             json="$json,"
         fi
-        json="$json\"$verb\""
+        local escaped_verb
+        escaped_verb=$(escape_for_json "$verb")
+        json="$json\"$escaped_verb\""
     done <<EOF
 $(echo "$raw" | tr ',' '\n')
 EOF

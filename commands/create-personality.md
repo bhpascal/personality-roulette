@@ -45,7 +45,10 @@ Based on their pitch, draft a complete personality file following this exact str
 - subagent: "[What this personality says when dispatching a subagent -- one sentence]"
 - notification_idle: "[What this personality says when waiting for user input -- one sentence]"
 - notification_permission: "[What this personality says when requesting permission -- one sentence]"
+- notification_auth: "[What this personality says when authentication succeeds -- one sentence]"
+- notification_elicitation: "[What this personality says when asking the user a question -- one sentence]"
 - status_display: "[Display Name for status line]"
+- session_signoff: "[How this personality signs off at session end -- one sentence]"
 - spinner_verbs: "[Comma-separated list of 6-8 character-themed verbs shown in the loading spinner, e.g. Charting, Navigating, Plotting]"
 
 ## Session Announcement
