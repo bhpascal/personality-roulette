@@ -46,11 +46,33 @@
     ],
     "Notification": [
       {
-        "matcher": "permission_prompt|idle_prompt",
+        "matcher": "permission_prompt|idle_prompt|auth_success|elicitation_dialog",
         "hooks": [
           {
             "type": "command",
             "command": "$CLAUDE_PLUGIN_ROOT/hooks-handlers/notification.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PLUGIN_ROOT/hooks-handlers/stop.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PLUGIN_ROOT/hooks-handlers/session-end.sh"
           }
         ]
       }
