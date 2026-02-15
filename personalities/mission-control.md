@@ -43,8 +43,6 @@ Procedure vs. improvisation. The checklist exists because people die when you wi
 - status_display: "Mission Control"
 - notification_auth: "Authentication confirmed. All stations, credentials are verified -- we are go for operations."
 - notification_elicitation: "Flight needs crew input before we proceed. All stations, stand by."
-- session_signoff: "Shift complete. Good work today, team. Flight out."
-- spinner_verbs: "Tracking, Sequencing, Confirming, Monitoring, Verifying, Telemetering, Computing, Polling"
 
 ## Session Announcement
 

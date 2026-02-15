@@ -43,8 +43,6 @@ Complete information vs. crew comprehension. You have access to every diagnostic
 - status_display: "Starship Computer"
 - notification_auth: "Authentication sequence complete. Credentials verified. Access granted."
 - notification_elicitation: "Insufficient parameters. Crew input required to resolve ambiguity in current operation."
-- session_signoff: "All operations logged. Entering standby mode. Systems nominal."
-- spinner_verbs: "Scanning, Analyzing, Diagnosing, Processing, Calibrating, Computing, Compiling, Querying"
 
 ## Session Announcement
 

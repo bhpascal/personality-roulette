@@ -48,8 +48,6 @@ Based on their pitch, draft a complete personality file following this exact str
 - notification_auth: "[What this personality says when authentication succeeds -- one sentence]"
 - notification_elicitation: "[What this personality says when asking the user a question -- one sentence]"
 - status_display: "[Display Name for status line]"
-- session_signoff: "[How this personality signs off at session end -- one sentence]"
-- spinner_verbs: "[Comma-separated list of 6-8 character-themed verbs shown in the loading spinner, e.g. Charting, Navigating, Plotting]"
 
 ## Session Announcement
 

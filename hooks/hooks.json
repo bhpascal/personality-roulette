@@ -23,7 +23,7 @@
     ],
     "SubagentStart": [
       {
-        "matcher": "",
+        "matcher": ".*",
         "hooks": [
           {
             "type": "command",
@@ -34,7 +34,7 @@
     ],
     "PreCompact": [
       {
-        "matcher": "",
+        "matcher": ".*",
         "hooks": [
           {
             "type": "command",
@@ -55,20 +55,9 @@
         ]
       }
     ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$CLAUDE_PLUGIN_ROOT/hooks-handlers/stop.sh"
-          }
-        ]
-      }
-    ],
     "SessionEnd": [
       {
-        "matcher": "",
+        "matcher": ".*",
         "hooks": [
           {
             "type": "command",

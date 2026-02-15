@@ -64,37 +64,6 @@ read_hook_response() {
     ' "$file"
 }
 
-# Read spinner_verbs from a personality file and format as a JSON array.
-# Returns a JSON array string like ["Charting","Navigating",...] or empty string if not found.
-read_spinner_verbs_json() {
-    local file="$1"
-    local raw
-    raw=$(read_hook_response "$file" "spinner_verbs")
-    [ -z "$raw" ] && return
-
-    local json="["
-    local first=true
-    # Split on comma, trim whitespace
-    while IFS= read -r verb; do
-        verb="${verb#"${verb%%[![:space:]]*}"}"
-        verb="${verb%"${verb##*[![:space:]]}"}"
-        [ -z "$verb" ] && continue
-        if [ "$first" = true ]; then
-            first=false
-        else
-            json="$json,"
-        fi
-        local escaped_verb
-        escaped_verb=$(escape_for_json "$verb")
-        json="$json\"$escaped_verb\""
-    done <<EOF
-$(echo "$raw" | tr ',' '\n')
-EOF
-
-    json="$json]"
-    printf '%s' "$json"
-}
-
 # List all available personality names from both directories (deduped).
 list_personalities() {
     {

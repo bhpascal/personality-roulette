@@ -9,8 +9,15 @@ source "$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)/lib.sh"
 # Read hook input from stdin
 INPUT=$(cat)
 
-# Determine trigger type from hook event
-TRIGGER=$(echo "$INPUT" | grep -o '"session_event":"[^"]*"' | head -1 | sed 's/.*":"//' | sed 's/".*//' 2>/dev/null || echo "startup")
+# Determine trigger type from hook event (jq preferred, grep/sed fallback)
+TRIGGER=""
+if command -v jq &>/dev/null; then
+    TRIGGER=$(echo "$INPUT" | jq -r '.session_event // empty' 2>/dev/null || true)
+fi
+if [ -z "$TRIGGER" ]; then
+    TRIGGER=$(echo "$INPUT" | grep -o '"session_event":"[^"]*"' | head -1 | sed 's/.*":"//' | sed 's/".*//' 2>/dev/null || true)
+fi
+TRIGGER="${TRIGGER:-startup}"
 
 # Ensure state directory exists
 mkdir -p "$STATE_DIR"
@@ -69,25 +76,20 @@ fi
 FULL_CONTEXT="$PREAMBLE\n\n$CONTENT$MEMORY"
 ESCAPED=$(escape_for_json "$FULL_CONTEXT")
 
-# Extract personality-specific spinner verbs
-SPINNER_JSON=$(read_spinner_verbs_json "$FILE")
-SPINNER_LINE=""
-if [ -n "$SPINNER_JSON" ]; then
-    SPINNER_LINE=",
-    \"spinnerVerbs\": ${SPINNER_JSON}"
-fi
-
 # Export personality name for other tools/scripts
 if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
     echo "export PERSONALITY_ROULETTE_CURRENT=\"$PERSONALITY\"" >> "$CLAUDE_ENV_FILE"
     echo "export PERSONALITY_ROULETTE_DISPLAY=\"$DISPLAY\"" >> "$CLAUDE_ENV_FILE"
 fi
 
+DISPLAY_ESCAPED=$(escape_for_json "Personality Roulette: $DISPLAY")
+
 cat <<EOF
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "${ESCAPED}"${SPINNER_LINE}
-  }
+    "additionalContext": "${ESCAPED}"
+  },
+  "systemMessage": "${DISPLAY_ESCAPED}"
 }
 EOF
