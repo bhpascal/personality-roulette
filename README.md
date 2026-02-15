@@ -50,7 +50,8 @@ Personalities are assigned automatically on session start. Just start a Claude C
 ### Commands
 
 ```
-/personality-roulette:personality              # Reroll random
+/personality-roulette:personality              # Show current
+/personality-roulette:personality reroll        # Reroll random
 /personality-roulette:personality sea-captain   # Pick specific
 /personality-roulette:personality list          # Show all
 /personality-roulette:personality off           # Disable
@@ -93,7 +94,7 @@ This walks you through naming, writing, and saving a custom personality. It hand
 Custom personalities go in `~/.claude/personality-roulette/personalities/` (not inside the plugin directory). This means they survive plugin updates and don't require digging through cache folders.
 
 1. Create a new `.md` file in `~/.claude/personality-roulette/personalities/`
-2. Follow the format of the built-in personality files (Core Tension, Voice, Manner, Technical Style, Boundaries, Hook Responses, Session Announcement, Session Sign-off)
+2. Follow the format of the built-in personality files (Core Tension, Voice, Manner, Technical Style, Boundaries, Hook Responses, Session Announcement)
 3. The filename (without `.md`, kebab-case) becomes the personality identifier
 4. The plugin auto-discovers new personality files -- no configuration changes needed
 
@@ -127,6 +128,7 @@ The plugin stores state in `~/.claude/personality-roulette/`:
 | File          | Purpose                                       |
 | ------------- | --------------------------------------------- |
 | `current.txt` | Current personality name (or "off")           |
+| `default.txt` | Default personality name (skips random roll)  |
 | `memory.txt`  | Character details preserved across compaction |
 
 These persist independently of the plugin installation, so your personality state survives plugin updates.
