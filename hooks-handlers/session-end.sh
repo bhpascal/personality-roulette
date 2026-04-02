@@ -10,4 +10,7 @@ if [ -f "$MEMORY_FILE" ]; then
     rm -f "$MEMORY_FILE"
 fi
 
+# Remove rules file so personality doesn't persist after session
+remove_rules_file
+
 exit 0

@@ -11,6 +11,7 @@ STATE_DIR="$HOME/.claude/personality-roulette"
 STATE_FILE="$STATE_DIR/current.txt"
 DEFAULT_FILE="$STATE_DIR/default.txt"
 MEMORY_FILE="$STATE_DIR/memory.txt"
+RULES_FILE="$HOME/.claude/rules/personality-roulette-active.md"
 USER_PERSONALITIES_DIR="$STATE_DIR/personalities"
 PLUGIN_PERSONALITIES_DIR="$PLUGIN_ROOT/personalities"
 
@@ -62,6 +63,42 @@ read_hook_response() {
             exit
         }
     ' "$file"
+}
+
+# Extract the ## Reinforcement section from a personality .md file.
+# Returns everything between ## Reinforcement and the next ## (or EOF).
+read_reinforcement() {
+    local file="$1"
+    [ -f "$file" ] || return
+
+    awk '
+        /^## Reinforcement$/ { in_section=1; next }
+        /^##/ { if (in_section) exit }
+        in_section { print }
+    ' "$file" | sed '/^$/d'
+}
+
+# Write the active personality rules file for system prompt persistence.
+# Creates ~/.claude/rules/ if needed. Overwrites any existing rules file.
+write_rules_file() {
+    local display="$1"
+    local reinforcement="$2"
+
+    if [ -z "$reinforcement" ]; then
+        return
+    fi
+
+    mkdir -p "$(dirname "$RULES_FILE")"
+    cat > "$RULES_FILE" <<EOF
+# Personality Roulette: $display
+
+$reinforcement
+EOF
+}
+
+# Remove the active personality rules file.
+remove_rules_file() {
+    rm -f "$RULES_FILE"
 }
 
 # List all available personality names from both directories (deduped).

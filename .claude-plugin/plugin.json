@@ -1,7 +1,7 @@
 {
   "name": "personality-roulette",
   "version": "1.0.0",
-  "description": "Randomly assigns Claude a distinct personality on session start. Seven characters: Sea Captain, Starship Computer, Hyperintelligence, Archduke of Hell, Noir Detective, Nature Narrator, and Mission Control.",
+  "description": "Randomly assigns Claude a distinct personality on session start. Eight characters: Sea Captain, Starship Computer, Hyperintelligence, Archduke of Hell, Noir Detective, Nature Narrator, Mission Control, and JARVIS.",
   "author": {
     "name": "What Do You Do? LLC",
     "email": "brian@whatdoyoudo.net"

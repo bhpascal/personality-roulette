@@ -47,18 +47,24 @@ esac
 
 # Check for disabled state
 if [ "$PERSONALITY" = "off" ] || [ -z "$PERSONALITY" ]; then
+    remove_rules_file
     exit 0
 fi
 
 # Find and read personality definition
 FILE=$(find_personality_file "$PERSONALITY")
 if [ -z "$FILE" ]; then
+    remove_rules_file
     exit 0
 fi
 CONTENT=$(cat "$FILE")
 
 DISPLAY=$(read_hook_response "$FILE" "status_display")
 [ -z "$DISPLAY" ] && DISPLAY=$(echo "$PERSONALITY" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+
+# Write reinforcement to rules file for system prompt persistence
+REINFORCEMENT=$(read_reinforcement "$FILE")
+write_rules_file "$DISPLAY" "$REINFORCEMENT"
 
 # Build context injection
 if [ "$ANNOUNCE" = "true" ]; then

@@ -57,7 +57,8 @@ When searching for a personality by name, check the custom directory first (user
 
 ### For "off":
 1. Write "off" to `~/.claude/personality-roulette/current.txt`.
-2. Confirm that personality mode is disabled. Resume your normal voice.
+2. Delete `~/.claude/rules/personality-roulette-active.md` if it exists.
+3. Confirm that personality mode is disabled. Resume your normal voice.
 
 ### For "reroll":
 1. Read `~/.claude/personality-roulette/current.txt` to determine the current personality.
@@ -65,14 +66,16 @@ When searching for a personality by name, check the custom directory first (user
 3. Pick a random one that's different from the current personality.
 4. Write the new personality name (filename without .md) to `~/.claude/personality-roulette/current.txt`.
 5. Read the new personality file.
-6. Adopt the personality immediately and announce yourself as described in its Session Announcement section.
+6. Find the `## Reinforcement` section in the personality file and write it to `~/.claude/rules/personality-roulette-active.md` with header `# Personality Roulette: [Display Name]` followed by a blank line and the reinforcement content.
+7. Adopt the personality immediately and announce yourself as described in its Session Announcement section.
 
 ### For a specific personality name:
 1. Check for a matching `.md` file in the custom directory first (if it exists), then the built-in directory (match with or without the `.md` extension, case-insensitive, and try replacing spaces with hyphens).
 2. If not found, show available personalities and ask the user to pick one.
 3. Write the personality name to `~/.claude/personality-roulette/current.txt`.
 4. Read the personality file.
-5. Adopt the personality immediately and announce yourself as described in its Session Announcement section.
+5. Find the `## Reinforcement` section in the personality file and write it to `~/.claude/rules/personality-roulette-active.md` with header `# Personality Roulette: [Display Name]` followed by a blank line and the reinforcement content.
+6. Adopt the personality immediately and announce yourself as described in its Session Announcement section.
 
 ## Notes
 
